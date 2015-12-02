@@ -2,8 +2,11 @@ package com.example.kazuaki.liarwolf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import com.example.kazuaki.liarwolf.Enum.*;
+import com.example.kazuaki.liarwolf.LWUtility.*;
 
 /**
  * Created by Kazuaki on 2015/11/16.
@@ -17,7 +20,25 @@ public class LWGameScene{
   int day = 0;
 
   String victim = "いません";
-  ArrayList<Object> victimArray = new ArrayList<Object>();
+  ArrayList<Object> victimArray = new ArrayList<Object>();]
+  List<Map<String,Object>> playerArray = new ArrayList<>();
+
+  Map<String,Object> playerMap;
+  //map中身生成
+  int i;
+  String[] name = {"はせべ","はるき","くろき","きむ","しんぺー","かっきー","たけし","まさよし"};
+
+  for(i=0;i<8;i++) {
+   playerMap = new HashMap<>();
+   playerMap.put("playerId", i);
+   playerMap.put("name", name[i]);
+   playerMap.put("roleId", Role.RoleVillager);
+   playerMap.put("isLive", true);
+   playerArray.add(playerMap);
+
+  }
+
+
 
  // 初期化関数
  public void initBackground{
@@ -33,7 +54,7 @@ public class LWGameScene{
 
  }
 
- public static void setBackground{
+ public void setBackground{
 
   // Table内のデータを初期化
   // 画面を一度まっさらにする
@@ -56,7 +77,7 @@ public class LWGameScene{
 
    if (query.get("phase").equals("firstNight_opening")){
     // refresh
-    refresh;
+    void refresh;
     // message 未実装
     message = "はじめの夜になりました。「%@」さんから端末をまわしてそれぞれ行動を決定してください。それ以外のプレイヤーは目を閉じて顔を伏せてください。",infoDic.get("players")[0]["name"]];
     /*backColor
@@ -65,7 +86,7 @@ public class LWGameScene{
    }
    if (query.get("phase").equals("night_opening")){
     //refresh
-    if (isFinish !=0){ //終了判定
+    //if (isFinish !=0){ //終了判定
      query.put("phase","gameover");
      // setBackground
      //戻り値を指定
@@ -91,7 +112,7 @@ public class LWGameScene{
   int point = 0;
   boolean wolfzero = true;
   // 生存者の役職を数える
-  if (roleId == RoleWerewolf){
+  if (roleId == Role.RoleWerewolf){
    point --;
    wolfzero = false;
   } else{
@@ -108,7 +129,7 @@ public class LWGameScene{
   else {
    result = 0;//ゲーム続行
   }
-  return result;
+  //return result;
 
  }
 
