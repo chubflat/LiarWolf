@@ -6,16 +6,16 @@ package com.example.kazuaki.liarwolf;
 public class Enum {
 
     /**
-     * EnumƒNƒ‰ƒX‚Å‚·B
+     * Enumã‚¯ãƒ©ã‚¹ã§ã™ã€‚
      *
      */
     public enum Role {
         RoleVillager,
-        RoleWerewolf;
+        RoleWerewolf,
     }
 
     /**
-     * switch•¶‚ðŽg‚Á‚ÄAEnum‚Ì”äŠr‚ð‚µ‚Ä‚¢‚Ü‚·B
+     * switchæ–‡ã‚’ä½¿ã£ã¦ã€Enumã®æ¯”è¼ƒã‚’ã—ã¦ã„ã¾ã™ã€‚
      */
     public static void main(String arg[]) {
         Role role = Role.RoleVillager;
@@ -23,10 +23,10 @@ public class Enum {
 
         switch (role) {
             case RoleVillager:
-                System.out.println("‘ºl");
+                System.out.println("æ‘äºº");
                 break;
             case RoleWerewolf:
-                System.out.println("l˜T");
+                System.out.println("äººç‹¼");
                 break;
             default:
                 System.out.println("Other!!");

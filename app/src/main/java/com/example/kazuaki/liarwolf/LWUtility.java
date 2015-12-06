@@ -9,39 +9,38 @@ import android.widget.Button;
  */
 public class LWUtility {
     public static void main(String[] args) {
-        public static Map<String, String> getCardinfofromId ( int cardId){
             Map<String, Object> infoDic = new HashMap<String, Object>();
             String name = "name";
             String explain = "explain";
-            String detailExplain = "“Á‚É‚È‚µ";
-            boolean hasTable = false; //–é‚ÌƒAƒNƒVƒ‡ƒ“‚Åƒe[ƒuƒ‹‚ª‚ ‚é‚©
-            boolean hasTableFirst = false;//‰–é‚ÌƒAƒNƒVƒ‡ƒ“‚Åƒe[ƒuƒ‹‚ª‚ ‚é‚©
-            String tableString = "";// –é‚ÌƒAƒNƒVƒ‡ƒ“‚Åƒe[ƒuƒ‹‚É•\¦‚·‚é•¶š—ñ
-            String tableStringFirst = "";// ‰–é‚ÌƒAƒNƒVƒ‡ƒ“‚Åƒe[ƒuƒ‹‚É•\¦‚·‚é•¶š—ñ
+            String detailExplain = "ç‰¹ã«ãªã—";
+            boolean hasTable = false; //å¤œã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚‹ã‹
+            boolean hasTableFirst = false;//åˆå¤œã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚‹ã‹
+            String tableString = "";// å¤œã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ãƒ†ãƒ¼ãƒ–ãƒ«ã«è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
+            String tableStringFirst = "";// åˆå¤œã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ãƒ†ãƒ¼ãƒ–ãƒ«ã«è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
 
             Role role = Role.RoleVillager;
 
 
             switch (role) {
                 case RoleVillager: //RoleVillager
-                    name = "‘ºl";
+                    name = "æ‘äºº";
                     hasTable = false;
-                    explain = "‘ºl‚Í“Áê‚È”\—Í‚ğ‚½‚È‚¢‚½‚¾‚Ìˆê”Êl‚Å‚·‚ªA‚±‚ÌƒQ[ƒ€‚ÌålŒö‚Å‚à‚ ‚è‚Ü‚·B‘¼‚Ì‘ºl‚â“Áê”\—Í‚ğ‚Á‚½’‡ŠÔ‚½‚¿‚Æ‹¦—Í‚µ‚Äl˜T‚ğˆŒY‚µA‘S–Å‚³‚¹‚Ü‚µ‚å‚¤B";
+                    explain = "æ‘äººã¯ç‰¹æ®Šãªèƒ½åŠ›ã‚’æŒãŸãªã„ãŸã ã®ä¸€èˆ¬äººã§ã™ãŒã€ã“ã®ã‚²ãƒ¼ãƒ ã®ä¸»äººå…¬ã§ã‚‚ã‚ã‚Šã¾ã™ã€‚ä»–ã®æ‘äººã‚„ç‰¹æ®Šèƒ½åŠ›ã‚’æŒã£ãŸä»²é–“ãŸã¡ã¨å”åŠ›ã—ã¦äººç‹¼ã‚’å‡¦åˆ‘ã—ã€å…¨æ»…ã•ã›ã¾ã—ã‚‡ã†ã€‚";
                     break;
 
                 case RoleWerewolf://RoleWerewolf
-                    name = "l˜T";
+                    name = "äººç‹¼";
                     hasTable = true;
                     hasTableFirst = true;
-                    tableString = "";//–¢À‘•
-                    tableStringFirst = "";//–¢À‘•
-                    explain = "l˜T‚Í–ˆ”Ó–Ú‚ğŠo‚Ü‚µA‘º‚ÌlŠÔ‚ğˆêl‚¸‚Â‘I‚ñ‚Å‹ò‚¢E‚µ‚Ä‚¢‚«‚Ü‚·Bl˜T“¯m‚Å‹¦—Í‚µ‚ÄlŠÔ‚ğ‹ò‚¢s‚­‚µA‘º‚ğ‘S–Å‚³‚¹‚Ä‚µ‚Ü‚¢‚Ü‚µ‚å‚¤B";
+                    tableString = "";//æœªå®Ÿè£…
+                    tableStringFirst = "";//æœªå®Ÿè£…
+                    explain = "äººç‹¼ã¯æ¯æ™©ç›®ã‚’è¦šã¾ã—ã€æ‘ã®äººé–“ã‚’ä¸€äººãšã¤é¸ã‚“ã§å–°ã„æ®ºã—ã¦ã„ãã¾ã™ã€‚äººç‹¼åŒå£«ã§å”åŠ›ã—ã¦äººé–“ã‚’å–°ã„å°½ãã—ã€æ‘ã‚’å…¨æ»…ã•ã›ã¦ã—ã¾ã„ã¾ã—ã‚‡ã†ã€‚";
                     break;
 
                 default:
                     break;
             }
-            // infoDic‚ÉƒL[‚Æ’l‚ğİ’è
+            // infoDicã«ã‚­ãƒ¼ã¨å€¤ã‚’è¨­å®š
             infoDic.put("name", name);
             infoDic.put("explain", explain);
             infoDic.put("hasTable", hasTable);
@@ -49,9 +48,7 @@ public class LWUtility {
             infoDic.put("tableString", tableString);
             infoDic.put("tableStringFirst", tableStringFirst);
 
-            return infoDic;
+
 
         }
-    }
-
 }

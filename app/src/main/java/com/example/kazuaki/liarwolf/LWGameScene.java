@@ -19,14 +19,14 @@ public class LWGameScene{
 
   int day = 0;
 
-  String victim = "‚¢‚Ü‚¹‚ñ";
-  ArrayList<Object> victimArray = new ArrayList<Object>();]
+  String victim = "ã„ã¾ã›ã‚“";
+  ArrayList<Object> victimArray = new ArrayList<Object>();
   List<Map<String,Object>> playerArray = new ArrayList<>();
 
   Map<String,Object> playerMap;
-  //map’†g¶¬
+  //mapä¸­èº«ç”Ÿæˆ
   int i;
-  String[] name = {"‚Í‚¹‚×","‚Í‚é‚«","‚­‚ë‚«","‚«‚Ş","‚µ‚ñ‚Ø[","‚©‚Á‚«[","‚½‚¯‚µ","‚Ü‚³‚æ‚µ"};
+  String[] name = {"ã¯ã›ã¹","ã¯ã‚‹ã","ãã‚ã","ãã‚€","ã—ã‚“ãºãƒ¼","ã‹ã£ããƒ¼","ãŸã‘ã—","ã¾ã•ã‚ˆã—"};
 
   for(i=0;i<8;i++) {
    playerMap = new HashMap<>();
@@ -37,67 +37,68 @@ public class LWGameScene{
    playerArray.add(playerMap);
 
   }
+ }
+}
+
+/*
+ // åˆæœŸåŒ–é–¢æ•°
+ // public void initBackground{
 
 
+  // backgroundã‚’è¨­å®š
+  // setRoleï¼ˆã‚·ãƒ£ãƒƒãƒ•ãƒ«ã—ã¦å½¹è·ã‚’æ±ºå®šï¼‰
+  //void setRole;
 
- // ‰Šú‰»ŠÖ”
- public void initBackground{
-
-
-  // background‚ğİ’è
-  // setRoleiƒVƒƒƒbƒtƒ‹‚µ‚Ä–ğE‚ğŒˆ’èj
-  void setRole;
-
-  query.put("phase","firstNight_opening");
-  void setBackground;
+  // query.put("phase","firstNight_opening");
+  // void setBackground;
 
 
  }
 
- public void setBackground{
+ // public void setBackground{
 
-  // Table“à‚Ìƒf[ƒ^‚ğ‰Šú‰»
-  // ‰æ–Ê‚ğˆê“x‚Ü‚Á‚³‚ç‚É‚·‚é
-
-
-  // phase ‚É‰‚¶‚½ˆ—‚ğ‘‚­
-  if(query.get("phase").equals("firstNight_opening") || query.get("phase").equals("nextPlayer") || query.get("phase").equals("afternoon_opening") || query.get("phase").equals("afternoon_opening2") || query.get("phase").equals("night_opening") || query.get("phase").equals("gameover") || query.get("phase").equals("winner"){
+  // Tableå†…ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
+  // ç”»é¢ã‚’ä¸€åº¦ã¾ã£ã•ã‚‰ã«ã™ã‚‹
 
 
-   // ‰æ–Ê‚ğì‚é
+  // phase ã«å¿œã˜ãŸå‡¦ç†ã‚’æ›¸ã
+  // if(query.get("phase").equals("firstNight_opening") || query.get("phase").equals("nextPlayer") || query.get("phase").equals("afternoon_opening") || query.get("phase").equals("afternoon_opening2") || query.get("phase").equals("night_opening") || query.get("phase").equals("gameover") || query.get("phase").equals("winner"){
+
+
+   // ç”»é¢ã‚’ä½œã‚‹
    /* messageSize
    *  buttonSize
    *  margin
 
    *  UIColor
     fontSize */
-   String message = "";
+   // String message = "";
 
-    //‰æ–Ê‚ğì‚éI—¹
+    //ç”»é¢ã‚’ä½œã‚‹çµ‚äº†
 
-   if (query.get("phase").equals("firstNight_opening")){
-    // refresh
-    void refresh;
-    // message –¢À‘•
-    message = "‚Í‚¶‚ß‚Ì–é‚É‚È‚è‚Ü‚µ‚½Bu%@v‚³‚ñ‚©‚ç’[––‚ğ‚Ü‚í‚µ‚Ä‚»‚ê‚¼‚ês“®‚ğŒˆ’è‚µ‚Ä‚­‚¾‚³‚¢B‚»‚êˆÈŠO‚ÌƒvƒŒƒCƒ„[‚Í–Ú‚ğ•Â‚¶‚ÄŠç‚ğ•š‚¹‚Ä‚­‚¾‚³‚¢B",infoDic.get("players")[0]["name"]];
+    // if (query.get("phase").equals("firstNight_opening")){
+    // void refresh
+    // message æœªå®Ÿè£…
+    // message = "ã¯ã˜ã‚ã®å¤œã«ãªã‚Šã¾ã—ãŸã€‚ã€Œ%@ã€ã•ã‚“ã‹ã‚‰ç«¯æœ«ã‚’ã¾ã‚ã—ã¦ãã‚Œãã‚Œè¡Œå‹•ã‚’æ±ºå®šã—ã¦ãã ã•ã„ã€‚ãã‚Œä»¥å¤–ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¯ç›®ã‚’é–‰ã˜ã¦é¡”ã‚’ä¼ã›ã¦ãã ã•ã„ã€‚",
     /*backColor
     * fontColor
     * fontSize*/
-   }
-   if (query.get("phase").equals("night_opening")){
+   //}
+   //if (query.get("phase").equals("night_opening")){
     //refresh
-    //if (isFinish !=0){ //I—¹”»’è
-     query.put("phase","gameover");
+    //if (isFinish !=0){ //çµ‚äº†åˆ¤å®š
+     // query.put("phase","gameover");
      // setBackground
-     //–ß‚è’l‚ğw’è
-    }
-   }
+     //æˆ»ã‚Šå€¤ã‚’æŒ‡å®š
+    //}
+   //}
 
 
-  }
+  //}
 
 
- }
+ //}
+/*
  public void setRole{
   ArrayList<Object> array = new ArrayList<>();
   ArrayList<Object> roleArray = new ArrayList<>();
@@ -111,7 +112,7 @@ public class LWGameScene{
  public void isFinish{
   int point = 0;
   boolean wolfzero = true;
-  // ¶‘¶Ò‚Ì–ğE‚ğ”‚¦‚é
+  // ç”Ÿå­˜è€…ã®å½¹è·ã‚’æ•°ãˆã‚‹
   if (roleId == Role.RoleWerewolf){
    point --;
    wolfzero = false;
@@ -121,17 +122,13 @@ public class LWGameScene{
 
   int result = 0;
   if(wolfzero){
-   result = 1; //‘ºŸ—˜
+   result = 1; //æ‘å‹åˆ©
   }
   if (point <=0){
-   result = -1;//l˜TŸ—˜
+   result = -1;//äººç‹¼å‹åˆ©
   }
   else {
-   result = 0;//ƒQ[ƒ€‘±s
+   result = 0;//ã‚²ãƒ¼ãƒ ç¶šè¡Œ
   }
   //return result;
-
- }
-
- }
-}
+}}}*/
