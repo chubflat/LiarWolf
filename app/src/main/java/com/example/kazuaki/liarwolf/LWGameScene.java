@@ -6,22 +6,55 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import com.example.kazuaki.liarwolf.Enum.*;
-import com.example.kazuaki.liarwolf.LWUtility.*;
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.*;
+import android.graphics.drawable.PaintDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.TextView;
+
+import static com.example.kazuaki.liarwolf.Enum.Role.*;
 
 /**
  * Created by Kazuaki on 2015/11/16.
  */
 
-public class LWGameScene{
- public static void main(String[] args){
-  Map<String,String> query = new HashMap<String,String>();
-  ArrayList<Object> tablePlayerArray = new ArrayList<Object>();
+public class LWGameScene extends Activity{
+ @Override
+ public void onCreate(Bundle savedInstanceState){
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.gamescene);
 
-  int day = 0;
+  TextView test = new TextView(this);
+  test.setText("test");
+  setContentView(test,new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
 
-  String victim = "いません";
-  ArrayList<Object> victimArray = new ArrayList<Object>();
-  List<Map<String,Object>> playerArray = new ArrayList<>();
+ }
+
+ private static Map<String, String> query;
+ private static ArrayList<Object> tablePlayerArray;
+ private static int day;
+ private static String victim;
+ private static ArrayList<Object> victimArray;
+ private static List<Map<String,Object>> playerArray;
+
+ public void main(String[] args) {
+ }
+ // 初期化メソッド
+  public void initBackground(){
+
+  query = new HashMap<String,String>();
+  tablePlayerArray = new ArrayList<Object>();
+
+  day = 0;
+
+  victim = "いません";
+  victimArray = new ArrayList<Object>();
+  playerArray = new ArrayList<>();
 
   Map<String,Object> playerMap;
   //map中身生成
@@ -32,103 +65,66 @@ public class LWGameScene{
    playerMap = new HashMap<>();
    playerMap.put("playerId", i);
    playerMap.put("name", name[i]);
-   playerMap.put("roleId", Role.RoleVillager);
+   playerMap.put("roleId", RoleVillager);
    playerMap.put("isLive", true);
    playerArray.add(playerMap);
+     }
+   query.put("phase","firstNight_opening");
 
-  }
+   //TODO setBackgroundを呼び出す
  }
-}
+ public void setBackground(){
+  //TODO 画面作成処理
 
-/*
- // 初期化関数
- // public void initBackground{
-
-
-  // backgroundを設定
-  // setRole（シャッフルして役職を決定）
-  //void setRole;
-
-  // query.put("phase","firstNight_opening");
-  // void setBackground;
-
-
- }
-
- // public void setBackground{
-
-  // Table内のデータを初期化
-  // 画面を一度まっさらにする
-
-
-  // phase に応じた処理を書く
+  // phase が・・・の場合のif文を書く
   // if(query.get("phase").equals("firstNight_opening") || query.get("phase").equals("nextPlayer") || query.get("phase").equals("afternoon_opening") || query.get("phase").equals("afternoon_opening2") || query.get("phase").equals("night_opening") || query.get("phase").equals("gameover") || query.get("phase").equals("winner"){
 
 
-   // 画面を作る
-   /* messageSize
-   *  buttonSize
-   *  margin
+  //TODO 終了判定
+  // isFinishメソッドを呼び出す
+  // winIdに応じてテキストをかえる
 
-   *  UIColor
-    fontSize */
-   // String message = "";
+  //TODO 続行の場合
+  // 最初の人を探す
+  // ◯日目の夜になりました
+  // 役職ごとに文章を表示
+ }
+ public void checkExcutedPlayer(){
+  // phaseRole:どんな役職の効果で死亡したのか
+ }
+ public void setTableDataFirst(){}
+ public void setTableData(){}
+ public void setRole(){}
+ public void setBackScene(){}
+ // public void touchesBegan(){}
+ public void goNextPhase(){
+  // TODO phaseの順番を定義する
+ }
+ public void refresh(){
+  //TODO 保持している情報を消す
+ }
+ public int isFinish(){
+  int point;
+  point = 0;
+  return point;
+  //TODO 終了判定を記述
+ }
+ public void alertView(){
+  // アラートのボタンが押されたときに呼ばれるデリゲート例文
+ }
 
-    //画面を作る終了
 
-    // if (query.get("phase").equals("firstNight_opening")){
-    // void refresh
-    // message 未実装
-    // message = "はじめの夜になりました。「%@」さんから端末をまわしてそれぞれ行動を決定してください。それ以外のプレイヤーは目を閉じて顔を伏せてください。",
-    /*backColor
-    * fontColor
-    * fontSize*/
-   //}
-   //if (query.get("phase").equals("night_opening")){
-    //refresh
-    //if (isFinish !=0){ //終了判定
-     // query.put("phase","gameover");
-     // setBackground
-     //戻り値を指定
-    //}
-   //}
+ }
 
 
-  //}
-
-
- //}
 /*
- public void setRole{
-  ArrayList<Object> array = new ArrayList<>();
-  ArrayList<Object> roleArray = new ArrayList<>();
-
-
-
+ public void onDraw(Canvas c){
+  //TODO ここの描画処理を追加
+  Paint fill_paint = new Paint();
+  c.drawText("test",50,50,fill_paint);
+  c.drawBitmap(img,50,50,fill_paint);
  }
- public void refresh{
 
- }
- public void isFinish{
-  int point = 0;
-  boolean wolfzero = true;
-  // 生存者の役職を数える
-  if (roleId == Role.RoleWerewolf){
-   point --;
-   wolfzero = false;
-  } else{
-   point ++;
-  }
 
-  int result = 0;
-  if(wolfzero){
-   result = 1; //村勝利
-  }
-  if (point <=0){
-   result = -1;//人狼勝利
-  }
-  else {
-   result = 0;//ゲーム続行
-  }
-  //return result;
-}}}*/
+}
+*/

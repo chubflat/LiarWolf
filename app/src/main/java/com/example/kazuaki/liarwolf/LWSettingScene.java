@@ -27,12 +27,12 @@ public class LWSettingScene extends Activity {
 
         Button roleSetting = new Button(this);
         roleSetting.setText("配役設定");
-        roleSetting.setLayoutParams(new LinearLayout.LayoutParams(MP,WC));
+        roleSetting.setLayoutParams(new LinearLayout.LayoutParams(MP, WC));
         linearLayout.addView(roleSetting);
 
         Button ruleSetting = new Button(this);
         ruleSetting.setText("ルール設定");
-        ruleSetting.setLayoutParams(new LinearLayout.LayoutParams(MP,WC));
+        ruleSetting.setLayoutParams(new LinearLayout.LayoutParams(MP, WC));
         linearLayout.addView(ruleSetting);
 
         Button playerSetting = new Button(this);
