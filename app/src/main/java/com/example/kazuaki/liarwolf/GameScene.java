@@ -7,15 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 import com.example.kazuaki.liarwolf.Enum.*;
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.*;
-import android.graphics.drawable.PaintDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.TextView;
+import android.widget.Button;
 
 import static com.example.kazuaki.liarwolf.Enum.Role.*;
 
@@ -23,16 +17,33 @@ import static com.example.kazuaki.liarwolf.Enum.Role.*;
  * Created by Kazuaki on 2015/11/16.
  */
 
-public class LWGameScene extends Activity{
+public class GameScene extends Activity{
+    private boolean showCanvas = true;
+    private SetView setView;
+ public void main(String args[]) {
+      }
+
  @Override
  public void onCreate(Bundle savedInstanceState){
   super.onCreate(savedInstanceState);
   setContentView(R.layout.gamescene);
 
-  TextView test = new TextView(this);
-  test.setText("test");
-  setContentView(test,new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+/*     setView = (SetView)findViewById(R.id.setView);
 
+     Button button = (Button)findViewById(R.id.testbtn);
+     button.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             if(showCanvas) {
+                 setView.showCanvas(false);
+                 showCanvas = false;
+             }
+             else{
+                 setView.showCanvas(true);
+                 showCanvas = true;
+             }
+          }
+     });*/
  }
 
  private static Map<String, String> query;
@@ -42,22 +53,24 @@ public class LWGameScene extends Activity{
  private static ArrayList<Object> victimArray;
  private static List<Map<String,Object>> playerArray;
 
- public void main(String[] args) {
- }
+
  // 初期化メソッド
-  public void initBackground(){
+  public void initBackground() {
 
-  query = new HashMap<String,String>();
-  tablePlayerArray = new ArrayList<Object>();
+   query = new HashMap<String, String>();
+   tablePlayerArray = new ArrayList<Object>();
 
-  day = 0;
+   day = 0;
 
-  victim = "いません";
-  victimArray = new ArrayList<Object>();
-  playerArray = new ArrayList<>();
+   victim = "いません";
+   victimArray = new ArrayList<Object>();
+   playerArray = new ArrayList<>();
 
-  Map<String,Object> playerMap;
-  //map中身生成
+   setRole();
+   setBackground();
+  }
+ public void setRole(){
+  Map<String, Object> playerMap;
   int i;
   String[] name = {"はせべ","はるき","くろき","きむ","しんぺー","かっきー","たけし","まさよし"};
 
@@ -69,9 +82,8 @@ public class LWGameScene extends Activity{
    playerMap.put("isLive", true);
    playerArray.add(playerMap);
      }
-   query.put("phase","firstNight_opening");
+   query.put("phase", "firstNight_opening");
 
-   //TODO setBackgroundを呼び出す
  }
  public void setBackground(){
   //TODO 画面作成処理
@@ -94,7 +106,6 @@ public class LWGameScene extends Activity{
  }
  public void setTableDataFirst(){}
  public void setTableData(){}
- public void setRole(){}
  public void setBackScene(){}
  // public void touchesBegan(){}
  public void goNextPhase(){
@@ -112,19 +123,4 @@ public class LWGameScene extends Activity{
  public void alertView(){
   // アラートのボタンが押されたときに呼ばれるデリゲート例文
  }
-
-
- }
-
-
-/*
- public void onDraw(Canvas c){
-  //TODO ここの描画処理を追加
-  Paint fill_paint = new Paint();
-  c.drawText("test",50,50,fill_paint);
-  c.drawBitmap(img,50,50,fill_paint);
- }
-
-
 }
-*/

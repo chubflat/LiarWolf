@@ -12,9 +12,19 @@ import static android.widget.LinearLayout.*;
 /**
  * Created by Kazuaki on 2015/12/06.
  */
-public class LWSettingScene extends Activity {
+public class SettingScene extends Activity {
+    public static void main(String[] args){}
     private final int MP = LinearLayout.LayoutParams.MATCH_PARENT;
     private final int WC = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+    public void initBackground(){
+        // ボタン生成処理
+    }
+    public void saveData(){}
+    public void loadData(){}
+    public void setPlayerInfo(){}
+    public void setRoleInfo(){}
+    public void setRuleInfo(){}
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -47,15 +57,9 @@ public class LWSettingScene extends Activity {
         gameScene.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LWSettingScene.this, LWGameScene.class);
+                Intent intent = new Intent(SettingScene.this, GameScene.class);
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
     }
 }

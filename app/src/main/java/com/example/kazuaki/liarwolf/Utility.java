@@ -7,7 +7,7 @@ import android.widget.Button;
 /**
  * Created by Kazuaki on 2015/11/16.
  */
-public class LWUtility {
+public class Utility {
     public static void main(String[] args) {
             Map<String, Object> infoDic = new HashMap<String, Object>();
             String name = "name";
