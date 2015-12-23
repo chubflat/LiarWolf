@@ -87,10 +87,10 @@ public class CustomView extends View {
                 int werewolfVolume = GameScene.roleArray.get(1);
                 int SeerVolume = GameScene.roleArray.get(2);
                 int mediumVolume = GameScene.roleArray.get(3);
-                int madmanVolume = GameScene.roleArray.get(4);
+                int minionVolume = GameScene.roleArray.get(4);
                 int bodyguardVolume = GameScene.roleArray.get(5);
 
-                text = String.format("プレイヤー数は%d人です。\n" + "村人：%d人\n" + "人狼：%d人\n" +"予言者：%d人\n" + "霊媒師：%d人\n" + "狂人：%d人\n" +"狩人：%d人\n",playerVolume,villagerVolume,werewolfVolume,SeerVolume,mediumVolume,madmanVolume,bodyguardVolume);
+                text = String.format("プレイヤー数は%d人です。\n" + "村人：%d人\n" + "人狼：%d人\n" +"予言者：%d人\n" + "霊媒師：%d人\n" + "狂人：%d人\n" +"狩人：%d人\n",playerVolume,villagerVolume,werewolfVolume,SeerVolume,mediumVolume,minionVolume,bodyguardVolume);
                 break;
             case "night_opening" :
                 text = String.format("%d日目の夜になりました。「%s」さんから端末を回してそれぞれ行動を決定してください。それ以外のプレイヤーは目を閉じて顔を伏せてください。",day,GameScene.playerArray.get(nowPlayer).get("name"));
@@ -128,7 +128,7 @@ public class CustomView extends View {
                         GameScene.drawListView(true);
                     }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Medium){
                         String result = "人間";
-                        if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(mediumId).get("roleId")).get("mediumResult")){
+                        if((int)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(mediumId).get("roleId")).get("mediumResult") == -1){
                             result = "人狼";
                         }
                         text = String.format("あなたは霊媒師です。昼に処刑された「%s」さんは＜%s＞でした。",(String)GameScene.playerArray.get(mediumId).get("name"),result);
@@ -137,7 +137,7 @@ public class CustomView extends View {
                 break;
             case "Seer":
                 String result = "人間";
-                if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(selectedPlayerId).get("roleId")).get("seerResult")){
+                if((int)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(selectedPlayerId).get("roleId")).get("seerResult") == -1){
                     result = "人狼";
                 }
                 text = String.format("「%s」さんは＜%s＞です",(String)GameScene.playerArray.get(selectedPlayerId).get("name"),result);
