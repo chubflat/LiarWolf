@@ -37,21 +37,25 @@ public class SettingScene extends Activity {
 
         Button roleSetting = new Button(this);
         roleSetting.setText("配役設定");
+        roleSetting.setBackgroundResource(R.drawable.button);
         roleSetting.setLayoutParams(new LinearLayout.LayoutParams(MP, WC));
         linearLayout.addView(roleSetting);
 
         Button ruleSetting = new Button(this);
         ruleSetting.setText("ルール設定");
+        ruleSetting.setBackgroundResource(R.drawable.button);
         ruleSetting.setLayoutParams(new LinearLayout.LayoutParams(MP, WC));
         linearLayout.addView(ruleSetting);
 
         Button playerSetting = new Button(this);
         playerSetting.setText("プレイヤー設定");
+        playerSetting.setBackgroundResource(R.drawable.button);
         playerSetting.setLayoutParams(new LinearLayout.LayoutParams(MP,WC));
         linearLayout.addView(playerSetting);
 
         Button gameScene = new Button(this);
         gameScene.setText("スタート");
+        gameScene.setBackgroundResource(R.drawable.button);
         gameScene.setLayoutParams(new LinearLayout.LayoutParams(MP, WC));
         linearLayout.addView(gameScene);
         gameScene.setOnClickListener(new View.OnClickListener() {
