@@ -31,7 +31,7 @@ public class CustomView extends View {
     public static int nowPlayer = 0;
     public static int day;
     public static int selectedPlayerId;
-    public static int shamanId;
+    public static int mediumId;
     public static int bodyguardId;
     public static boolean isFirstNight = true;
 
@@ -73,7 +73,7 @@ public class CustomView extends View {
         day = GameScene.day;
         selectedPlayerId = GameScene.selectedPlayerId;
         isFirstNight = GameScene.isFirstNight;
-        shamanId = GameScene.shamanId;
+        mediumId = GameScene.mediumId;
         bodyguardId = GameScene.bodyguardId;
 
 
@@ -85,12 +85,12 @@ public class CustomView extends View {
             case "role_setting":
                 int villagerVolume = GameScene.roleArray.get(0);
                 int werewolfVolume = GameScene.roleArray.get(1);
-                int fortuneTellerVolume = GameScene.roleArray.get(2);
-                int shamanVolume = GameScene.roleArray.get(3);
+                int SeerVolume = GameScene.roleArray.get(2);
+                int mediumVolume = GameScene.roleArray.get(3);
                 int madmanVolume = GameScene.roleArray.get(4);
                 int bodyguardVolume = GameScene.roleArray.get(5);
 
-                text = String.format("プレイヤー数は%d人です。\n" + "村人：%d人\n" + "人狼：%d人\n" +"予言者：%d人\n" + "霊媒師：%d人\n" + "狂人：%d人\n" +"狩人：%d人\n",playerVolume,villagerVolume,werewolfVolume,fortuneTellerVolume,shamanVolume,madmanVolume,bodyguardVolume);
+                text = String.format("プレイヤー数は%d人です。\n" + "村人：%d人\n" + "人狼：%d人\n" +"予言者：%d人\n" + "霊媒師：%d人\n" + "狂人：%d人\n" +"狩人：%d人\n",playerVolume,villagerVolume,werewolfVolume,SeerVolume,mediumVolume,madmanVolume,bodyguardVolume);
                 break;
             case "night_opening" :
                 text = String.format("%d日目の夜になりました。「%s」さんから端末を回してそれぞれ行動を決定してください。それ以外のプレイヤーは目を閉じて顔を伏せてください。",day,GameScene.playerArray.get(nowPlayer).get("name"));
@@ -109,7 +109,7 @@ public class CustomView extends View {
                     if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(nowPlayer).get("roleId")).get("hasTableFirst")){
                         if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Werewolf){
                             GameScene.setListAdapter(1);
-                        }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.FortuneTeller){
+                        }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Seer){
                             GameScene.setListAdapter(2);
                         }
                         GameScene.drawListView(true);
@@ -120,24 +120,24 @@ public class CustomView extends View {
                     if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(nowPlayer).get("roleId")).get("hasTable")){
                         if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Werewolf){
                             GameScene.setListAdapter(1);
-                        }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.FortuneTeller){
+                        }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Seer){
                             GameScene.setListAdapter(2);
                         }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Bodyguard){
                             GameScene.setListAdapter(3);
                         }
                         GameScene.drawListView(true);
-                    }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Shaman){
+                    }else if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Medium){
                         String result = "人間";
-                        if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(shamanId).get("roleId")).get("isWolfS")){
+                        if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(mediumId).get("roleId")).get("mediumResult")){
                             result = "人狼";
                         }
-                        text = String.format("あなたは霊媒師です。昼に処刑された「%s」さんは＜%s＞でした。",(String)GameScene.playerArray.get(shamanId).get("name"),result);
+                        text = String.format("あなたは霊媒師です。昼に処刑された「%s」さんは＜%s＞でした。",(String)GameScene.playerArray.get(mediumId).get("name"),result);
                     }
                 }
                 break;
-            case "fortuneTeller":
+            case "Seer":
                 String result = "人間";
-                if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(selectedPlayerId).get("roleId")).get("isWolfF")){
+                if((Boolean)Utility.getRoleInfo((Utility.Role) GameScene.playerArray.get(selectedPlayerId).get("roleId")).get("seerResult")){
                     result = "人狼";
                 }
                 text = String.format("「%s」さんは＜%s＞です",(String)GameScene.playerArray.get(selectedPlayerId).get("name"),result);
@@ -213,7 +213,7 @@ public class CustomView extends View {
             String startButton = "スタート";
             canvas.drawText(startButton,dp_width*35/100,dp_height*37/100,paint);
 
-            playerVolume = GameScene.contactlist.size();
+            playerVolume = GameScene.listInfoDicArray.size();
             String playersize = String.format("プレイヤー数：%d人",playerVolume);
             paint.setColor(Color.WHITE);
             canvas.drawText(playersize,dp_width*2/10,dp_height*10/100,paint);
@@ -257,28 +257,28 @@ public class CustomView extends View {
                     //TODO 参加者を消す処理
                     String text = GameScene.editText.getText().toString();
                     if(!(text.equals(""))){
-                        GameScene.player.add(text);
+                        GameScene.prePlayerList.add(text);
                     }
 
-                    GameScene.contactlist.clear();
+                    GameScene.listInfoDicArray.clear();
 
-                    for (int i = 0; i < GameScene.player.size(); i++) {
+                    for (int i = 0; i < GameScene.prePlayerList.size(); i++) {
 //                        if ((boolean) playerArray.get(i).get("isLive") == true) {
 ////                    String name = (String) playerArray.get(i).get("name");
 ////                    names.add(name);
 //                            GameScene.listPlayerArray.add(i);
 
                         Map<String,String> conMap = new HashMap<>();
-                        conMap.put("name",GameScene.player.get(i));
-                        conMap.put("wolfVoteInfo","");
-                        GameScene.contactlist.add(conMap);
+                        conMap.put("name",GameScene.prePlayerList.get(i));
+                        conMap.put("listSecondInfo","");
+                        GameScene.listInfoDicArray.add(conMap);
 //                        }
                     }
 
 //                    Map<String ,String> map = new HashMap<>();
 //                    map.put("name",text);
-//                    map.put("wolfVoteInfo","");
-//                    GameScene.contactlist.add(map);
+//                    map.put("listSecondInfo","");
+//                    GameScene.listInfoDicArray.add(map);
 
                     GameScene.listView.invalidateViews();
                     // 中身クリア
@@ -296,7 +296,7 @@ public class CustomView extends View {
             default:
                 return true;
         }
-//        playerVolume =  GameScene.contactlist.size();
+//        playerVolume =  GameScene.listInfoDicArray.size();
         invalidate();
         return true;
     }

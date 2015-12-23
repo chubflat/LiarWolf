@@ -1,24 +1,12 @@
 package com.example.kazuaki.liarwolf;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -38,25 +26,23 @@ public class GameScene extends Activity {
     public void main(String args[]) {
     }
 
-    public static ArrayList<Integer> listPlayerArray;// listに入っているplayerの情報
-    public static int day;
+    public static ArrayList<Integer> listPlayerIdArray;// listに入っているplayerのID
+    public static int day;//日にち
     //    public static String victim;
-    public static ArrayList<Integer> victimArray;
+    public static ArrayList<Integer> victimArray;//夜間犠牲者リスト
     public static List<Map<String,Object>> playerArray;
-    public static String phase;
-    public static int nowPlayer;
-    public static ListView listView;
-    public static EditText editText;
-    public static int selectedPlayerId;
-    public static int shamanId;
-    public static int bodyguardId;
-    public static ArrayList<String> names;
-    public static ArrayList<String> wolfVoteInfo;
-    public static List<Map<String,String>> contactlist;
+    public static String phase;//ゲーム場面
+    public static int nowPlayer;//今端末を操作しているプレイヤー
+    public static ListView listView;//リストビュー
+    public static EditText editText;//名前入力用
+    public static int selectedPlayerId;//リストで選択されたプレイヤーID
+    public static int mediumId;//昼に処刑されたプレイヤーのID
+    public static int bodyguardId;//狩人が守ったプレイヤーのID
+    public static List<Map<String,String>> listInfoDicArray;//リスト情報のMap
     public static SimpleAdapter adapter;
-    public static boolean isFirstNight;
+    public static boolean isFirstNight;//初日フラグ
     public static ArrayList<ArrayList<Integer>> wolfkillArray;
-    public static ArrayList<String> player;//TODO Rename
+    public static ArrayList<String> prePlayerList;//TODO Rename
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {    //戻るボタンの反応なくす
@@ -87,7 +73,7 @@ public class GameScene extends Activity {
         editLP.gravity = Gravity.BOTTOM;
         editLP.bottomMargin = customView.dp_height*45/100;
 
-        player = new ArrayList<>();
+        prePlayerList = new ArrayList<>();
 
         editText.setLayoutParams(editLP);
         editText.setBackgroundColor(Color.WHITE);
@@ -101,42 +87,13 @@ public class GameScene extends Activity {
         lp.bottomMargin = 0;
         selectedPlayerId = -2;
 
-        listPlayerArray = new ArrayList<>();
+        listPlayerIdArray = new ArrayList<>();
         Log.d("array","array=");
 
-        names = new ArrayList<String>();
-//                for(int i = 0;i < playerArray.size();i++){
-//                    if((boolean)playerArray.get(i).get("isLive") == true){
-//                        String name = (String)playerArray.get(i).get("name");
-//                        names.add(name);
-//                        listPlayerArray.add(i);
-//                    }else{
-//
-//                    }
-//                }
+        listInfoDicArray = new ArrayList<Map<String,String>>();
 
-        wolfVoteInfo = new ArrayList<String>();
-//                for(int i = 0;i < playerArray.size();i++){
-//                    wolfVoteInfo.add("1");
-//                }
 
-        contactlist = new ArrayList<Map<String,String>>();
-
-//            for(int i=0;i<names.size();i++){
-//                Map<String,String> conMap = new HashMap<>();
-//                conMap.put("name",names.get(i));
-//                conMap.put("wolfVoteInfo",wolfVoteInfo.get(i));
-//                contactlist.add(conMap);
-//                if((boolean)playerArray.get(i).get("isLive") == true) {
-//                    String name = (String) playerArray.get(i).get("name");
-//                    names.add(name);
-//                    listPlayerArray.add(i);
-//                }else{
-//
-//                }
-//            }
-
-        adapter = new SimpleAdapter(this,contactlist,android.R.layout.simple_list_item_2,new String[]{"name","wolfVoteInfo"},new int[]{android.R.id.text1,android.R.id.text2});
+        adapter = new SimpleAdapter(this,listInfoDicArray,android.R.layout.simple_list_item_2,new String[]{"name","listSecondInfo"},new int[]{android.R.id.text1,android.R.id.text2});
 
         listView.setAdapter(adapter);
         listView.setLayoutParams(lp);
@@ -147,7 +104,7 @@ public class GameScene extends Activity {
                 if(phase.equals("player_setting")){
                     selectedPlayerId = -2;
                 }else{
-                    selectedPlayerId = listPlayerArray.get(position);
+                    selectedPlayerId = listPlayerIdArray.get(position);
                 }
 
                 if(phase.equals("player_setting")){
@@ -181,95 +138,84 @@ public class GameScene extends Activity {
     }
     public static void setListAdapter(int type){
 //        names.clear();
-//        wolfVoteInfo.clear();
-        contactlist.clear();
-        listPlayerArray.clear();
+//        listSecondInfo.clear();
+        listInfoDicArray.clear();
+        listPlayerIdArray.clear();
         if(type == -1) { //処刑用
             for (int i = 0; i < playerArray.size(); i++) {
                 if ((boolean) playerArray.get(i).get("isLive") == true) {
-//                    String name = (String) playerArray.get(i).get("name");
-//                    names.add(name);
-                    listPlayerArray.add(i);
+                    listPlayerIdArray.add(i);
 
                     Map<String,String> conMap = new HashMap<>();
                     conMap.put("name",(String)playerArray.get(i).get("name"));
-                    conMap.put("wolfVoteInfo","");
-                    contactlist.add(conMap);
+                    conMap.put("listSecondInfo","");
+                    listInfoDicArray.add(conMap);
                 }
             }
         }else if(type == 1){//人狼用
             if(isFirstNight){//仲間確認用
                 for (int i = 0; i < playerArray.size(); i++) {
                     if (playerArray.get(i).get("roleId") == Utility.Role.Werewolf && nowPlayer != i) {
-//                        String name = (String) playerArray.get(i).get("name");
-//                        names.add(name);
-                        listPlayerArray.add(i);
+                        listPlayerIdArray.add(i);
 
                         Map<String,String> conMap = new HashMap<>();
                         conMap.put("name",(String)playerArray.get(i).get("name"));
-                        conMap.put("wolfVoteInfo","");
-                        contactlist.add(conMap);
+                        conMap.put("listSecondInfo","");
+                        listInfoDicArray.add(conMap);
                     }
                 }
                 // 古いコード
 //                if((boolean)playerArray.get(i).get("isLive") == true) {
 //                    String name = (String) playerArray.get(i).get("name");
 //                    names.add(name);
-//                    listPlayerArray.add(i);
+//                    listPlayerIdArray.add(i);
 //                }else{
 //
 //                }
                 Map<String,String> confirm = new HashMap<>();
                 confirm.put("name","確認したらここをタップ");
-                confirm.put("wolfVoteInfo", "");
-                contactlist.add(confirm);
-//                names.add("確認したらここをタップ");
-                listPlayerArray.add(-1);
+                confirm.put("listSecondInfo", "");
+                listInfoDicArray.add(confirm);
+                listPlayerIdArray.add(-1);
 
             }else{ // 噛み用
                 for (int i = 0; i < playerArray.size(); i++) {
                     if ((boolean) playerArray.get(i).get("isLive") == true && playerArray.get(i).get("roleId") != Utility.Role.Werewolf) {
-//                        String name = (String) playerArray.get(i).get("name");
-//                        names.add(name);
-                        listPlayerArray.add(i);
+                        listPlayerIdArray.add(i);
 
                         Map<String,String> conMap = new HashMap<>();
                         conMap.put("name", (String) playerArray.get(i).get("name"));
 
-                        String wolfVoteInfo = String.format("feel: %d ,should: %d ,must: %d ",wolfkillArray.get(i).get(0),wolfkillArray.get(i).get(1),wolfkillArray.get(i).get(2));
+                        String listSecondInfo = String.format("feel: %d ,should: %d ,must: %d ",wolfkillArray.get(i).get(0),wolfkillArray.get(i).get(1),wolfkillArray.get(i).get(2));
                         if((wolfkillArray.get(i).get(0) + wolfkillArray.get(i).get(1) + wolfkillArray.get(i).get(2) >  0)){
-                            conMap.put("wolfVoteInfo",wolfVoteInfo);
+                            conMap.put("listSecondInfo",listSecondInfo);
                         }else{
-                            conMap.put("wolfVoteInfo","");
+                            conMap.put("listSecondInfo","");
                         }
-                        contactlist.add(conMap);
+                        listInfoDicArray.add(conMap);
                     }
                 }
             }
         }else if(type == 2){//予言者用
             for(int i=0;i < playerArray.size();i++){
-                if((boolean) playerArray.get(i).get("isLive") == true && playerArray.get(i).get("roleId") != Utility.Role.FortuneTeller){
-//                    String name = (String)playerArray.get(i).get("name");
-//                    names.add(name);
-                    listPlayerArray.add(i);
+                if((boolean) playerArray.get(i).get("isLive") == true && playerArray.get(i).get("roleId") != Utility.Role.Seer){
+                    listPlayerIdArray.add(i);
 
                     Map<String,String> conMap = new HashMap<>();
                     conMap.put("name",(String)playerArray.get(i).get("name"));
-                    conMap.put("wolfVoteInfo","");
-                    contactlist.add(conMap);
+                    conMap.put("listSecondInfo","");
+                    listInfoDicArray.add(conMap);
                 }
             }
         }else if(type == 3){
             for(int i=0;i < playerArray.size();i++){
                 if((boolean) playerArray.get(i).get("isLive") == true && playerArray.get(i).get("roleId") != Utility.Role.Bodyguard){
-//                    String name = (String)playerArray.get(i).get("name");
-//                    names.add(name);
-                    listPlayerArray.add(i);
+                    listPlayerIdArray.add(i);
 
                     Map<String,String> conMap = new HashMap<>();
                     conMap.put("name",(String)playerArray.get(i).get("name"));
-                    conMap.put("wolfVoteInfo","");
-                    contactlist.add(conMap);
+                    conMap.put("listSecondInfo","");
+                    listInfoDicArray.add(conMap);
                 }
             }
         }
@@ -298,15 +244,11 @@ public class GameScene extends Activity {
     public static ArrayList<Integer> roleArray;
 
     public static void setRole(){
-//        day = 1;
-//        nowPlayer = 0;
-//        isFirstNight = true;
         Map<String, Object> playerMap;
         //TODO EditText作成時
-//        ArrayList<String> playerName = new ArrayList<>(Arrays.asList("はせべ","はるき","くろき","きむ","しんぺー","かっきー","たけし","まさよし"));
         ArrayList<String> playerName = new ArrayList<>();
-        for(int i=0;i<player.size();i++){
-            playerName.add(player.get(i));
+        for(int i=0;i<prePlayerList.size();i++){
+            playerName.add(prePlayerList.get(i));
         }
 
         ArrayList<Utility.Role> fixedRoleArray = new ArrayList<>();
@@ -462,13 +404,13 @@ public class GameScene extends Activity {
                 phase = "night_roleCheck";
                 break;
             case "night_roleCheck":
-                if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.FortuneTeller){
-                    phase = "fortuneTeller";
+                if(GameScene.playerArray.get(nowPlayer).get("roleId") == Utility.Role.Seer){
+                    phase = "Seer";
                 }else {
                     phase = "nextPlayer";
                 }
                 break;
-            case "fortuneTeller":
+            case "Seer":
                 phase = "nextPlayer";
                 break;
             case "nextPlayer":
@@ -506,7 +448,7 @@ public class GameScene extends Activity {
                 break;
             case "excution":
                 playerArray.get(selectedPlayerId).put("isLive",false);
-                shamanId = selectedPlayerId;
+                mediumId = selectedPlayerId;
                 refresh();
                 if(isFinish() == 0) {
                     phase = "night_opening";
