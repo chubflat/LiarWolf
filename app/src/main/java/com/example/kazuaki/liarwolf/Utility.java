@@ -22,14 +22,14 @@ public class Utility{
         Lycan,
         ToughGuy,
         ApprenticeSeer,
-        Wolfboy,
-        Trapmaker,
+//        Wolfboy,
+//        Trapmaker,
         Cursed,
-        King,
-        Dictator,
+//        King,
+//        Dictator,
         Beholder,
         Hunter,
-        Mimic,
+//        Mimic,
         Fanatic,
         Immoralist,
         Cat,
@@ -172,29 +172,29 @@ public class Utility{
                 cardId = R.drawable.card10;
                 break;
 
-            case Wolfboy:
-                name = "狼少年//未実装";
-                hasTable = true;
-                hasTableFirst = false;
-                explain = "";
-                //判定
-                seerResult = 1;
-                mediumResult = 1;
-                isFinishCount = 1;
-                cardId = R.drawable.card11;
-            break;
+//            case Wolfboy:
+//                name = "狼少年//未実装";
+//                hasTable = true;
+//                hasTableFirst = false;
+//                explain = "";
+//                //判定
+//                seerResult = 1;
+//                mediumResult = 1;
+//                isFinishCount = 1;
+//                cardId = R.drawable.card11;
+//            break;
 
-            case Trapmaker:
-                name = "罠師//未実装";
-                hasTable = false;
-                hasTableFirst = false;
-                explain = "";
-                //判定
-                seerResult = 1;
-                mediumResult = 1;
-                isFinishCount = 1;
-                cardId = R.drawable.card12;
-            break;
+//            case Trapmaker:
+//                name = "罠師//未実装";
+//                hasTable = false;
+//                hasTableFirst = false;
+//                explain = "";
+//                //判定
+//                seerResult = 1;
+//                mediumResult = 1;
+//                isFinishCount = 1;
+//                cardId = R.drawable.card12;
+//            break;
 
             case Cursed:
                 name = "呪われた者//未実装";
@@ -208,29 +208,29 @@ public class Utility{
                 cardId = R.drawable.card0;//村人カード
                 break;
 
-            case King:
-                name = "王様//未実装";
-                hasTable = false;
-                hasTableFirst = false;
-                explain = "";
-                //判定
-                seerResult = 1;
-                mediumResult = 1;
-                isFinishCount = 1;
-                cardId = R.drawable.card14;
-                break;
+//            case King:
+//                name = "王様//未実装";
+//                hasTable = false;
+//                hasTableFirst = false;
+//                explain = "";
+//                //判定
+//                seerResult = 1;
+//                mediumResult = 1;
+//                isFinishCount = 1;
+//                cardId = R.drawable.card14;
+//                break;
 
-            case Dictator:
-                name = "独裁者//未実装";
-                hasTable = false;
-                hasTableFirst = false;
-                explain = "";
-                //判定
-                seerResult = 1;
-                mediumResult = 1;
-                isFinishCount = 1;
-                cardId = R.drawable.card15;
-                break;
+//            case Dictator:
+//                name = "独裁者//未実装";
+//                hasTable = false;
+//                hasTableFirst = false;
+//                explain = "";
+//                //判定
+//                seerResult = 1;
+//                mediumResult = 1;
+//                isFinishCount = 1;
+//                cardId = R.drawable.card15;
+//                break;
 
             case Beholder:
                 name = "予言者のママ//未実装";
@@ -256,17 +256,17 @@ public class Utility{
                 cardId = R.drawable.card17;
                 break;
 
-            case Mimic:
-                name = "ものまね師//未実装";
-                hasTable = false;
-                hasTableFirst = false;
-                explain = "";
-                //判定
-                seerResult = 1;
-                mediumResult = 1;
-                isFinishCount = 1;
-                cardId = R.drawable.card18;
-                break;
+//            case Mimic:
+//                name = "ものまね師//未実装";
+//                hasTable = false;
+//                hasTableFirst = false;
+//                explain = "";
+//                //判定
+//                seerResult = 1;
+//                mediumResult = 1;
+//                isFinishCount = 1;
+//                cardId = R.drawable.card18;
+//                break;
 
             case Fanatic:
                 name = "狂信者//未実装";
@@ -289,8 +289,68 @@ public class Utility{
                 seerResult = 1;
                 mediumResult = 1;
                 isFinishCount = 1;
-                cardId = R.drawable.card0;
+                cardId = R.drawable.card20;
                 break;
+
+            case Cat:
+                name = "猫又//未実装";
+                hasTable = false;
+                hasTableFirst = false;
+                explain = "";
+                //判定
+                seerResult = 1;
+                mediumResult = 1;
+                isFinishCount = 1;
+                cardId = R.drawable.card21;
+                break;
+
+            case Baker:
+                name = "パン屋//未実装";
+                hasTable = false;
+                hasTableFirst = false;
+                explain = "";
+                //判定
+                seerResult = 1;
+                mediumResult = 1;
+                isFinishCount = 1;
+                cardId = R.drawable.card22;
+                break;
+
+            case Noble:
+                name = "貴族//未実装";
+                hasTable = false;
+                hasTableFirst = false;
+                explain = "";
+                //判定
+                seerResult = 1;
+                mediumResult = 1;
+                isFinishCount = 1;
+                cardId = R.drawable.card23;
+                break;
+
+            case Slave:
+                name = "奴隷//未実装";
+                hasTable = false;
+                hasTableFirst = false;
+                explain = "";
+                //判定
+                seerResult = 1;
+                mediumResult = 1;
+                isFinishCount = 1;
+                cardId = R.drawable.card24;
+                break;
+
+//            case Sorcerer:
+//                name = "人狼占い//未実装";
+//                hasTable = false;
+//                hasTableFirst = false;
+//                explain = "";
+//                //判定
+//                seerResult = 1;
+//                mediumResult = 1;
+//                isFinishCount = 1;
+//                cardId = R.drawable.card25;//カードなし
+//                break;
 
             default:
                 name = "//未実装";

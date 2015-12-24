@@ -23,6 +23,7 @@ import java.util.Map;
  * Created by Kazuaki on 2015/12/23.
  */
 public class CustomView extends View {
+
     private Bitmap background =null;
     private Bitmap frame = null;
     private Bitmap button;
