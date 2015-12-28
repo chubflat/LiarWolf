@@ -42,7 +42,7 @@ public class GameScene extends Activity {
     public static SimpleAdapter adapter;
     public static boolean isFirstNight;//初日フラグ
     public static ArrayList<ArrayList<Integer>> wolfkillArray;
-    public static ArrayList<String> prePlayerList;//TODO Rename
+    public static ArrayList<String> prePlayerList;//参加者リスト
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {    //戻るボタンの反応なくす
