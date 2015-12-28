@@ -24,9 +24,9 @@ import java.util.Map;
  */
 public class CustomView extends View {
 
-    private Bitmap background =null;
-    private Bitmap frame = null;
-    private Bitmap button;
+    private Bitmap backgroundImg =null;
+    private Bitmap frameImg = null;
+    private Bitmap buttonImg;
     public String text = "text";
     public static String phase = "";
     public static int nowPlayer = 0;
@@ -57,15 +57,14 @@ public class CustomView extends View {
         // ディスプレイサイズ取得
         dp_width = dp.getWidth();
         dp_height = dp.getHeight();
-        // リサイズ画像の高さ
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         Paint paint = new Paint();
-        background = BitmapFactory.decodeResource(getResources(), R.drawable.night);
-        frame = BitmapFactory.decodeResource(getResources(), R.drawable.frame);
-        button = BitmapFactory.decodeResource(getResources(), R.drawable.button);
+        backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.night);
+        frameImg = BitmapFactory.decodeResource(getResources(), R.drawable.frame);
+        buttonImg = BitmapFactory.decodeResource(getResources(), R.drawable.button);
         textSize = 30;
 
 
@@ -147,7 +146,7 @@ public class CustomView extends View {
                 text = "次のプレイヤーに端末を渡してください。";
                 break;
             case "afternoon_opening":
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
                 if(GameScene.victimArray.size() == 0){
                     text = String.format("%d日目の朝になりました。昨晩の犠牲者はいませんでした。",day);
                 }else {
@@ -155,26 +154,26 @@ public class CustomView extends View {
                 }
                 break;
             case "afternoon_opening2":
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
                 text= "人狼を見つけるための会議を始めてください。議論の時間は5分です。";
                 break;
             case "afternoon_meeting":
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
                 // TODO タイマー実装時変更
                 text = "議論時間中";
                 break;
             case "afternoon_voting":
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.evening);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.evening);
                 text = "日が暮れて今日も1人処刑者を決めなければなりません。投票を行い、処刑者を決定してください。同票の場合は決選投票を行い、3回続けても変更がない場合は引き分けとなります。";
                 GameScene.drawListView(true);
                 break;
             case "excution":
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.evening);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.evening);
                 text = String.format("「%s」さんは村の総意で処刑されました。",(String)GameScene.playerArray.get(selectedPlayerId).get("name"));
                 GameScene.drawListView(false);
                 break;
             case "gameover":
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.evening);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.evening);
                 text = "この時点でゲームが終了しました。勝利者は、、、";
                 break;
             case "winner":
@@ -182,27 +181,27 @@ public class CustomView extends View {
                 String message = "";
                 if(winId == 1){
                     message = "村人チームの勝利です！";
-                    background = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
+                    backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
                 }else if(winId == -1){
                     message = "人狼チームの勝利です！";
-                    background = BitmapFactory.decodeResource(getResources(), R.drawable.night);
+                    backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.night);
                 }
                 text = message;
                 textSize = 50;
                 break;
             case "ending":
                 text = "お疲れさまでした。役職を確認してください";
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.night);
+                backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.night);
                 break;
             default:
                 text = "error";
                 break;
         }
         if(phase.equals("player_setting")){
-            canvas.drawBitmap(background, null, new Rect(0, 0, dp_width, dp_height), paint);
+            canvas.drawBitmap(backgroundImg, null, new Rect(0, 0, dp_width, dp_height), paint);
             // addButton
             addButton = new Rect(dp_width / 10,dp_height*15/100,dp_width*9/10,dp_height*25/100);
-            canvas.drawBitmap(button, null, addButton, paint);
+            canvas.drawBitmap(buttonImg, null, addButton, paint);
             String addButton = "プレイヤー追加";
             paint.setTextSize(50);
             canvas.drawText(addButton,dp_width*25/100,dp_height*22/100,paint);
@@ -210,7 +209,7 @@ public class CustomView extends View {
 
             // startButton
             startButton = new Rect(dp_width / 10,dp_height*3/10,dp_width*9/10,dp_height*4/10);
-            canvas.drawBitmap(button, null, startButton, paint);
+            canvas.drawBitmap(buttonImg, null, startButton, paint);
             String startButton = "スタート";
             canvas.drawText(startButton,dp_width*35/100,dp_height*37/100,paint);
 
@@ -221,11 +220,11 @@ public class CustomView extends View {
 
 
         }else{
-            canvas.drawBitmap(background, null, new Rect(0, 0, dp_width, dp_height), paint);
-            canvas.drawBitmap(frame, null, new Rect(dp_width / 10, dp_height * 2 / 10, dp_width * 9 / 10, dp_height * 5 / 10), paint);//width 1/10~9/10,height 2/10~5/10
+            canvas.drawBitmap(backgroundImg, null, new Rect(0, 0, dp_width, dp_height), paint);
+            canvas.drawBitmap(frameImg, null, new Rect(dp_width / 10, dp_height * 2 / 10, dp_width * 9 / 10, dp_height * 5 / 10), paint);//width 1/10~9/10,height 2/10~5/10
 
             buttonrect = new Rect(dp_width / 10, dp_height * 8 / 10, dp_width * 9 / 10, dp_height * 9 / 10);
-            canvas.drawBitmap(button, null,buttonrect, paint);
+            canvas.drawBitmap(buttonImg, null,buttonrect, paint);
 
             String button = "次へ";
             paint.setTextSize(50);

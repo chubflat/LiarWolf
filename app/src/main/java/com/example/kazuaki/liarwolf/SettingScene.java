@@ -13,6 +13,8 @@ import static android.widget.LinearLayout.*;
  * Created by Kazuaki on 2015/12/06.
  */
 public class SettingScene extends Activity {
+
+
     public static void main(String[] args){}
     private final int MP = LinearLayout.LayoutParams.MATCH_PARENT;
     private final int WC = LinearLayout.LayoutParams.WRAP_CONTENT;
