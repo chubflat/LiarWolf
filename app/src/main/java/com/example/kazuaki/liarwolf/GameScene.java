@@ -32,6 +32,8 @@ public class GameScene extends Activity {
     public static ArrayList<Integer> victimArray;//夜間犠牲者リスト
     public static List<Map<String,Object>> playerArray;
     public static String phase;//ゲーム場面
+    public static String scene;
+
     public static int nowPlayer;//今端末を操作しているプレイヤー
     public static ListView listView;//リストビュー
     public static EditText editText;//名前入力用
@@ -58,8 +60,9 @@ public class GameScene extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         phase = "player_setting";
+        scene = "game_scene";
         super.onCreate(savedInstanceState);
-        initBackground();//TODO initBackgroundときりわけ
+        initBackground();
         FrameLayout layout = new FrameLayout(this);
         setContentView(layout);
 
