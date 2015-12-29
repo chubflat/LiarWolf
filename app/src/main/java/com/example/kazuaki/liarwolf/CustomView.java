@@ -1,6 +1,7 @@
 package com.example.kazuaki.liarwolf;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -80,7 +81,7 @@ public class CustomView extends View {
         backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.night);
         frameImg = BitmapFactory.decodeResource(getResources(), R.drawable.frame);
         buttonImg = BitmapFactory.decodeResource(getResources(), R.drawable.button);
-        textSize = 30;
+        paint.setTextSize(50);
 
         backgroundRect  = new Rect(0,0,dp_width,dp_height);
 
@@ -115,7 +116,6 @@ public class CustomView extends View {
 
             case "setting_scene":
 
-                paint.setTextSize(50);
                 // 背景
                 backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
                 canvas.drawBitmap(backgroundImg,null,backgroundRect,paint);
@@ -142,7 +142,6 @@ public class CustomView extends View {
                 break;
 
             case "rule_setting":
-                paint.setTextSize(50);
                 // 背景
                 backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.night);
                 canvas.drawBitmap(backgroundImg, null, backgroundRect, paint);
@@ -208,6 +207,7 @@ public class CustomView extends View {
                 break;
 
             case "game_scene":
+                paint.setTextSize(30);
                 switch (phase){
                     case "player_setting":
                         playerSize = 0;
@@ -390,7 +390,9 @@ public class CustomView extends View {
                 switch (scene){
                     case "setting_scene":
                         if(rectButton1.contains((int)pointX,(int)pointY)){
-                            SettingScene.scene = "game_scene";
+                            scene = "game_scene";
+                            // GameScene.javaをよびだす
+
                         }else if(rectButton2.contains((int)pointX,(int)pointY)){
                             SettingScene.scene = "rule_setting";
                         }else if(rectButton3.contains((int)pointX,(int)pointY)){
