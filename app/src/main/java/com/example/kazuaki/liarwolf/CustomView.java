@@ -119,9 +119,9 @@ public class CustomView extends View {
                 // 背景
                 backgroundImg = BitmapFactory.decodeResource(getResources(), R.drawable.afternoon);
                 canvas.drawBitmap(backgroundImg,null,backgroundRect,paint);
-                //スタート
-                canvas.drawBitmap(buttonImg,null,rectButton1,paint);
-                canvas.drawText("スタート", canvas.getWidth() / 4, button1H + dp_height * 6/100,paint);
+//                //スタート
+//                canvas.drawBitmap(buttonImg,null,rectButton1,paint);
+//                canvas.drawText("スタート", canvas.getWidth() / 4, button1H + dp_height * 6/100,paint);
                 //ルール設定
                 canvas.drawBitmap(buttonImg,null,rectButton2,paint);
                 canvas.drawText("ルール設定", canvas.getWidth() / 4,button2H + dp_height * 6/100, paint);
@@ -207,7 +207,7 @@ public class CustomView extends View {
                 break;
 
             case "game_scene":
-                paint.setTextSize(30);
+                textSize = 30;
                 switch (phase){
                     case "player_setting":
                         playerSize = 0;
@@ -390,9 +390,10 @@ public class CustomView extends View {
                 switch (scene){
                     case "setting_scene":
                         if(rectButton1.contains((int)pointX,(int)pointY)){
-                            scene = "game_scene";
+                            SettingScene.scene = "game_scene";
+                            phase = "player_setting";
                             // GameScene.javaをよびだす
-
+                            Log.d("start","start+=");
                         }else if(rectButton2.contains((int)pointX,(int)pointY)){
                             SettingScene.scene = "rule_setting";
                         }else if(rectButton3.contains((int)pointX,(int)pointY)){
