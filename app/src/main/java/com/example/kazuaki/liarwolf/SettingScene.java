@@ -34,7 +34,7 @@ public class SettingScene extends Activity {
         layout.addView(customView);
 
         Button button = new Button(this);
-        button.setText("スタート");
+        button.setText("スタート");//TODO しっかりなおす
 
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(customView.dp_width*8/10,customView.dp_height/10);
         lp.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
